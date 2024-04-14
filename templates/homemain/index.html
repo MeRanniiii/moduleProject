@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+<head>
+    <script>
+    function showAlert() {
+        alert("게시판에 들어갑니다!");
+    }
+    </script>
+</head>
+{% block content %}
+<div class="container my-3">
+    {% if user.is_authenticated %}
+    <a>HI!! 로그인 됨 {{ user.name }}</a>
+    <a href="/board/board_list/">게시판 들어가기</a>
+    {% else %}
+    <a>HI!! WELCOME!! 로그아웃 상태</a>
+    <a href="/board/board_list/" onclick="return confirm('로그인이 필요한 활동입니다.' +
+    '로그인 하시겠습니까?');">게시판 들어가기</a>
+    {% endif %}
+</div>
+{% endblock %}
+
