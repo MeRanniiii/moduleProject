@@ -40,9 +40,10 @@ class LoginView(FormView):
         if user is not None:
             self.request.session['user_id'] = user_id
             login(self.request, user)
-
-        return super().form_valid(form)   
-    
+            response=super().form_valid(form)
+            #self.request.session['user_id'] = user_id
+            response.set_cookie('user_id',user_id)
+        return response
 
 
 def logout_view(request):

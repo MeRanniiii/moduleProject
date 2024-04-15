@@ -18,9 +18,8 @@ class CustomUserManager(BaseUserManager):
     def create_superuser(self, user_id, password, email=None,  name=None, nickname=None):
         user = self.create_user(user_id, password, email,name,nickname)
         user.is_superuser = True
-        # user.is_staff = True
-        # user.is_admin = True
-        # user.level = 0
+        user.is_staff = True
+        user.is_admin = True
         user.save(using=self._db)
         return user  
 #회원등록 모델
@@ -33,6 +32,11 @@ class Users(AbstractBaseUser, PermissionsMixin):
     name = models.CharField(max_length=8, verbose_name="이름", null=True)
     nickname = models.CharField(max_length=128, verbose_name="닉네임", null=True)
     registered_dttm = models.DateField(auto_now_add=True, verbose_name="등록시간")
+
+    is_active = models.BooleanField(default=True)
+    is_admin = models.BooleanField(default=False)
+    is_staff = models.BooleanField(default=False)
+    is_superuser = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'user_id'
     REQUIRED_FIELDS = ['email']

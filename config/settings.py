@@ -55,6 +55,8 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'config.urls'
 
+
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -77,13 +79,27 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+import pymysql
+pymysql.install_as_MySQLdb()
+
 DATABASES = {
- 'default': {
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.mysql', # engine: mysql
+    #     'NAME' : 'sampledb', # DB Name
+    #     'USER' : 'admin', # DB User
+    #     'PASSWORD' :'password',# Password
+    #     'HOST': 'database-1.cbmkaqoy0er5.ap-northeast-1.rds.amazonaws.com', # 생성한 데이터베이스 엔드포인트
+    #     'PORT': '3306', # 데이터베이스 포트
+    #     'OPTIONS':{
+    #         'init_command' : "SET sql_mode='STRICT_TRANS_TABLES'"
+    #     }
+    # }
+    'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'project',
-        'USER': 'root',
-        'PASSWORD': 'p@ssw0rd',
-        'HOST': 'localhost',
+        'NAME': 'rookies08grdb',
+        'USER': 'admin',
+        'PASSWORD': 'rookies08gr!',
+        'HOST': 'rookies08grdb.ch8y8cm0cecj.us-west-1.rds.amazonaws.com',
         'PORT': '3306',
     }
    # 'default': {
